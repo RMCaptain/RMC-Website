@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AquaOmega Case Study — Rocky Mountain Co.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif'],script:['Caveat','cursive']},colors:{g:{900:'#060A07',800:'#0B1210',700:'#132218',600:'#1C3525',500:'#2A5038',400:'#3B7252',300:'#52A870',200:'#7EC898',100:'#B0DFC0',50:'#E4F4EA'}}}}}
+  </script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:#060A07;color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden;}
+    .script{font-family:'Caveat',cursive;font-weight:700;color:#7EC898;font-size:1.08em;}
+    .num{background:linear-gradient(140deg,#7EC898 0%,#3B7252 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .gcard{background:rgba(11,18,16,0.7);border:1px solid rgba(82,168,112,0.12);border-radius:20px;backdrop-filter:blur(8px);}
+    .bar{width:40px;height:3px;background:linear-gradient(90deg,#52A870,#3B7252);border-radius:99px;}
+    .check{width:22px;height:22px;border-radius:50%;background:linear-gradient(140deg,#52A870,#3B7252);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .sr{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+    .sr.on{opacity:1;transform:translateY(0);}
+    .sr.d1{transition-delay:0.08s;} .sr.d2{transition-delay:0.16s;} .sr.d3{transition-delay:0.24s;}
+    @keyframes up{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+    .hu{animation:up 0.7s ease both;}
+    .hu.a1{animation-delay:0.05s;} .hu.a2{animation-delay:0.18s;} .hu.a3{animation-delay:0.30s;} .hu.a4{animation-delay:0.42s;}
+    #nav{transition:background 0.3s,border-color 0.3s;}
+    #mob{display:none;} #mob.open{display:block;}
+    .tag{background:rgba(42,80,56,0.3);border:1px solid rgba(82,168,112,0.2);border-radius:99px;padding:4px 14px;font-size:0.7rem;font-weight:700;color:#7EC898;text-transform:uppercase;letter-spacing:0.07em;}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" class="fixed top-0 inset-x-0 z-50" style="background:rgba(6,10,7,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(82,168,112,0.08);">
+  <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+    <a href="index.html"><img src="logo.png.png" alt="Rocky Mountain Co." style="height:72px;width:auto;display:block;"></a>
+    <div class="hidden md:flex items-center gap-7">
+      <a href="index.html"         class="text-g-100 hover:text-white text-sm font-medium transition-colors opacity-70 hover:opacity-100">Home</a>
+      <a href="team.html"          class="text-g-100 hover:text-white text-sm font-medium transition-colors opacity-70 hover:opacity-100">Our Team</a>
+      <a href="case-studies.html"  class="text-white text-sm font-medium">Case Studies</a>
+      <a href="index.html#contact" class="text-g-100 hover:text-white text-sm font-medium transition-colors opacity-70 hover:opacity-100">Contact Us</a>
+      <a href="index.html#contact" class="bg-g-300 hover:bg-g-200 text-g-900 font-bold text-sm px-5 py-2.5 rounded-lg transition-colors ml-1">Book a Call</a>
+    </div>
+    <button onclick="document.getElementById('mob').classList.toggle('open')" class="md:hidden text-white p-1 opacity-80">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="2" y1="6" x2="20" y2="6"/><line x1="2" y1="12" x2="20" y2="12"/><line x1="2" y1="18" x2="20" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="mob" class="md:hidden border-t border-white/5 px-6 py-6" style="background:#060A07;">
+    <div class="flex flex-col gap-5">
+      <a href="index.html"         onclick="document.getElementById('mob').classList.remove('open')" class="text-g-100 text-sm font-medium opacity-70">Home</a>
+      <a href="team.html"          onclick="document.getElementById('mob').classList.remove('open')" class="text-g-100 text-sm font-medium opacity-70">Our Team</a>
+      <a href="case-studies.html"  onclick="document.getElementById('mob').classList.remove('open')" class="text-white text-sm font-medium">Case Studies</a>
+      <a href="index.html#contact" onclick="document.getElementById('mob').classList.remove('open')" class="text-g-100 text-sm font-medium opacity-70">Contact Us</a>
+      <a href="index.html#contact" onclick="document.getElementById('mob').classList.remove('open')" class="bg-g-300 text-g-900 font-bold text-sm px-5 py-3 rounded-lg text-center">Book a Call</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section style="position:relative;min-height:80vh;display:flex;align-items:flex-end;overflow:hidden;padding-top:80px;">
+  <!-- Product image background -->
+  <img src="https://myaquaomega.com/cdn/shop/products/AO_DHA_Grape_225ml_US_Front.png?v=1616527810"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;" alt="">
+  <!-- Gradient overlay -->
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(6,10,7,0.65) 0%, rgba(6,10,7,0.6) 40%, rgba(6,10,7,0.97) 85%, #060A07 100%);z-index:1;"></div>
+
+  <div class="relative z-10 w-full max-w-6xl mx-auto px-6 pb-20 pt-32">
+    <!-- Breadcrumb -->
+    <a href="case-studies.html" class="hu a1 inline-flex items-center gap-2 text-g-300 text-xs font-semibold uppercase tracking-widest mb-8 opacity-70 hover:opacity-100 transition-opacity">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      All Case Studies
+    </a>
+    <div class="hu a1 mb-4"><span class="tag">Supplements · Ontario, Canada</span></div>
+    <h1 class="hu a2 font-black text-white leading-none mb-4" style="font-size:clamp(3.5rem,8vw,7rem);">AquaOmega</h1>
+    <p class="hu a3 text-g-100 text-xl leading-relaxed max-w-2xl mb-10" style="opacity:0.65;">"AquaOmega aims to be the global leader in Omega-3 fatty acid supplements. Great product. The channel needed work."</p>
+
+    <!-- Hero stat row -->
+    <div class="hu a4 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl">
+      <div class="gcard p-5 text-center">
+        <div class="num font-black" style="font-size:clamp(1.6rem,3.5vw,2.4rem);line-height:1;">+794%</div>
+        <div class="text-g-200 text-xs opacity-50 mt-2 uppercase tracking-wide">Revenue</div>
+      </div>
+      <div class="gcard p-5 text-center">
+        <div class="num font-black" style="font-size:clamp(1.6rem,3.5vw,2.4rem);line-height:1;">+400%</div>
+        <div class="text-g-200 text-xs opacity-50 mt-2 uppercase tracking-wide">Profit</div>
+      </div>
+      <div class="gcard p-5 text-center">
+        <div class="num font-black" style="font-size:clamp(1.6rem,3.5vw,2.4rem);line-height:1;">+683%</div>
+        <div class="text-g-200 text-xs opacity-50 mt-2 uppercase tracking-wide">Sessions</div>
+      </div>
+      <div class="gcard p-5 text-center">
+        <div class="num font-black" style="font-size:clamp(1.6rem,3.5vw,2.4rem);line-height:1;">+4218%</div>
+        <div class="text-g-200 text-xs opacity-50 mt-2 uppercase tracking-wide">Subscriptions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PRODUCT IMAGES -->
+<section style="background:#060A07;padding:80px 0 60px;">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sr">
+      <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(82,168,112,0.1);background:#fff;">
+        <img src="https://myaquaomega.com/cdn/shop/products/AO_EPA_Capsules_120_USA_Front.png?v=1616527725" style="width:100%;height:260px;object-fit:contain;display:block;padding:20px;" alt="AquaOmega High EPA Capsules">
+      </div>
+      <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(82,168,112,0.1);background:#fff;">
+        <img src="https://myaquaomega.com/cdn/shop/products/AO_EPA_Orange_225ml_US_Front.png?v=1616527922" style="width:100%;height:260px;object-fit:contain;display:block;padding:20px;" alt="AquaOmega High EPA Orange">
+      </div>
+      <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(82,168,112,0.1);background:#fff;">
+        <img src="https://myaquaomega.com/cdn/shop/products/AO_DHA_Capsules_120_USA_Front.png?v=1616614361" style="width:100%;height:260px;object-fit:contain;display:block;padding:20px;" alt="AquaOmega DHA Softgels">
+      </div>
+      <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(82,168,112,0.1);background:#fff;">
+        <img src="https://myaquaomega.com/cdn/shop/products/AO_EPA_Lemon_225ml_US_Front.png?v=1616527922" style="width:100%;height:260px;object-fit:contain;display:block;padding:20px;" alt="AquaOmega High EPA Lemon">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CHALLENGE / SOLUTION -->
+<section style="background:#060A07;padding:20px 0 80px;">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-6 sr">
+
+      <div class="gcard p-10">
+        <div class="bar mb-6"></div>
+        <p class="text-g-300 text-xs font-bold uppercase tracking-widest mb-6 opacity-60">The Challenges</p>
+        <ul class="space-y-5">
+          <li class="flex gap-3 text-g-100 text-sm leading-relaxed" style="opacity:0.85;">
+            <span style="color:#52A870;font-size:1.3rem;line-height:1.3;flex-shrink:0;">·</span>
+            <span><strong class="text-white">Unauthorized 3P resellers</strong> undercutting MAP pricing across platforms, damaging brand equity and margin</span>
+          </li>
+          <li class="flex gap-3 text-g-100 text-sm leading-relaxed" style="opacity:0.85;">
+            <span style="color:#52A870;font-size:1.3rem;line-height:1.3;flex-shrink:0;">·</span>
+            <span><strong class="text-white">SEO indexing failures</strong> — products weren't ranking for core keywords, organic traffic nonexistent</span>
+          </li>
+          <li class="flex gap-3 text-g-100 text-sm leading-relaxed" style="opacity:0.85;">
+            <span style="color:#52A870;font-size:1.3rem;line-height:1.3;flex-shrink:0;">·</span>
+            <span><strong class="text-white">Single-channel ad strategy</strong> — only automatic Sponsored Products with no keyword, competitor, or brand targeting</span>
+          </li>
+          <li class="flex gap-3 text-g-100 text-sm leading-relaxed" style="opacity:0.85;">
+            <span style="color:#52A870;font-size:1.3rem;line-height:1.3;flex-shrink:0;">·</span>
+            <span><strong class="text-white">Broken catalog structure</strong> — Amazon mixed parentages, wrong sizing displayed, products difficult to find</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="gcard p-10">
+        <div class="bar mb-6"></div>
+        <p class="text-g-300 text-xs font-bold uppercase tracking-widest mb-6 opacity-60">What RMC Did</p>
+        <ul class="space-y-5">
+          <li class="flex gap-3 items-start text-g-100 text-sm leading-relaxed" style="opacity:0.85;">
+            <span class="check mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span>A/B tested titles and hero images — rebuilt listings for conversion rate, not just keyword density</span>
+          </li>
+          <li class="flex gap-3 items-start text-g-100 text-sm leading-relaxed" style="opacity:0.85;">
+            <span class="check mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span>Eliminated unauthorized sellers using Amazon enforcement tools, restoring full pricing control</span>
+          </li>
+          <li class="flex gap-3 items-start text-g-100 text-sm leading-relaxed" style="opacity:0.85;">
+            <span class="check mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span>Built multi-channel ad campaigns — Sponsored Products (keyword + competitor), Sponsored Brand Ads, defensive campaigns</span>
+          </li>
+          <li class="flex gap-3 items-start text-g-100 text-sm leading-relaxed" style="opacity:0.85;">
+            <span class="check mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span>Developed customer persona through data analysis — created enhanced A+ Content, infographics, and video</span>
+          </li>
+          <li class="flex gap-3 items-start text-g-100 text-sm leading-relaxed" style="opacity:0.85;">
+            <span class="check mt-0.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span>Rebuilt catalog end-to-end — correct parentage, accurate sizing, Subscribe &amp; Save program launched</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- BEFORE / AFTER -->
+<section style="background:#0B1210;padding:80px 0;border-top:1px solid rgba(82,168,112,0.07);">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-12 sr">
+      <div class="bar mx-auto mb-5"></div>
+      <p class="text-g-300 text-xs font-bold uppercase tracking-widest">Before &amp; After</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6 sr">
+      <div>
+        <p class="text-g-300 text-xs font-bold uppercase tracking-widest mb-4 opacity-50">Before RMC</p>
+        <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(82,168,112,0.1);">
+          <img src="https://images.squarespace-cdn.com/content/v1/65590b9d0694a258955284c8/4bee1bfc-0fa0-4de9-aa5b-5232b4a9d301/AO+Results+Before.png" style="width:100%;display:block;" alt="AquaOmega results before">
+        </div>
+      </div>
+      <div>
+        <p class="text-g-300 text-xs font-bold uppercase tracking-widest mb-4 opacity-50">After RMC</p>
+        <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(82,168,112,0.25);box-shadow:0 0 32px rgba(58,114,82,0.15);">
+          <img src="https://images.squarespace-cdn.com/content/v1/65590b9d0694a258955284c8/d6bb500d-b0b4-4cbd-ac0c-46fc7c2a45fc/AO+Results+after.png" style="width:100%;display:block;" alt="AquaOmega results after">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SERVICES -->
+<section style="background:#060A07;padding:80px 0;">
+  <div class="max-w-6xl mx-auto px-6 sr">
+    <div class="bar mb-6"></div>
+    <p class="text-g-300 text-xs font-bold uppercase tracking-widest mb-10 opacity-60">Services Provided</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="gcard p-6 text-center">
+        <div class="text-white font-bold text-sm mb-2">Amazon Accelerator</div>
+        <div class="text-g-200 text-xs opacity-50 leading-relaxed">Full account management &amp; strategy</div>
+      </div>
+      <div class="gcard p-6 text-center">
+        <div class="text-white font-bold text-sm mb-2">Advertising</div>
+        <div class="text-g-200 text-xs opacity-50 leading-relaxed">PPC, Sponsored Brand, Defensive</div>
+      </div>
+      <div class="gcard p-6 text-center">
+        <div class="text-white font-bold text-sm mb-2">SEO Optimization</div>
+        <div class="text-g-200 text-xs opacity-50 leading-relaxed">Keyword research, indexing, ranking</div>
+      </div>
+      <div class="gcard p-6 text-center">
+        <div class="text-white font-bold text-sm mb-2">Brand Content</div>
+        <div class="text-g-200 text-xs opacity-50 leading-relaxed">A+ Content, Storefront, photography</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section style="background:#0B1210;padding:100px 0;border-top:1px solid rgba(82,168,112,0.08);">
+  <div class="max-w-3xl mx-auto px-6 text-center sr">
+    <div class="bar mx-auto mb-8"></div>
+    <h2 class="font-black text-white leading-tight mb-6" style="font-size:clamp(2rem,5vw,3.2rem);">
+      Want results <span class="script" style="font-size:1.1em;">like these?</span>
+    </h2>
+    <p class="text-g-100 text-lg leading-relaxed mb-10" style="opacity:0.6;max-width:480px;margin:0 auto 40px;">We work with a limited number of brands at a time. If you're doing $5M–$50M and want a real Amazon partner, let's talk.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+      <a href="mailto:info@rockymountainco.ca" class="bg-g-300 hover:bg-g-200 text-g-900 font-bold px-8 py-4 rounded-xl text-base transition-colors">Book a Call</a>
+      <a href="case-studies.html" class="border border-g-400/40 hover:border-g-300/60 text-g-100 hover:text-white font-semibold px-8 py-4 rounded-xl text-base transition-colors">← All Case Studies</a>
+    </div>
+    <div class="text-g-200 text-sm opacity-40">(825) 462-1035 · info@rockymountainco.ca</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#060A07;border-top:1px solid rgba(82,168,112,0.07);padding:40px 0;">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <img src="logo.png.png" alt="Rocky Mountain Co." style="height:52px;width:auto;opacity:0.7;">
+    <p class="text-g-200 text-xs opacity-40 text-center">© 2025 Rocky Mountain Co. All rights reserved. · Edmonton, AB</p>
+    <div class="flex gap-6">
+      <a href="index.html"        class="text-g-200 text-xs opacity-40 hover:opacity-70 transition-opacity">Home</a>
+      <a href="team.html"         class="text-g-200 text-xs opacity-40 hover:opacity-70 transition-opacity">Our Team</a>
+      <a href="case-studies.html" class="text-g-200 text-xs opacity-70 hover:opacity-100 transition-opacity">Case Studies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>{
+    if(window.scrollY>50){nav.style.background='rgba(6,10,7,0.97)';nav.style.borderBottomColor='rgba(82,168,112,0.1)';}
+    else{nav.style.background='rgba(6,10,7,0.85)';nav.style.borderBottomColor='rgba(82,168,112,0.08)';}
+  });
+  const obs=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('on');}),{threshold:0.1});
+  document.querySelectorAll('.sr').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

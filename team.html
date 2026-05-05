@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Meet the Rocky Mountain Co. team — the operators behind your Amazon growth.">
+  <title>Our Team — Rocky Mountain Co.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans:   ['Inter', 'sans-serif'],
+            script: ['Caveat', 'cursive'],
+          },
+          colors: {
+            g: {
+              900: '#060A07',
+              800: '#0B1210',
+              700: '#132218',
+              600: '#1C3525',
+              500: '#2A5038',
+              400: '#3B7252',
+              300: '#52A870',
+              200: '#7EC898',
+              100: '#B0DFC0',
+              50:  '#E4F4EA',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #060A07; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+    .script { font-family: 'Caveat', cursive; font-weight: 700; color: #7EC898; font-size: 1.08em; }
+
+    .gcard {
+      background: rgba(11,18,16,0.7);
+      border: 1px solid rgba(82,168,112,0.12);
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+      transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+    }
+    .gcard:hover {
+      border-color: rgba(82,168,112,0.30);
+      box-shadow: 0 0 28px rgba(58,114,82,0.15), 0 16px 40px rgba(0,0,0,0.35);
+      transform: translateY(-3px);
+    }
+
+    .sr { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .sr.on { opacity: 1; transform: translateY(0); }
+    .sr.d1 { transition-delay: 0.06s; }
+    .sr.d2 { transition-delay: 0.12s; }
+    .sr.d3 { transition-delay: 0.18s; }
+    .sr.d4 { transition-delay: 0.24s; }
+
+    @keyframes up { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+    .hu { animation: up 0.7s ease both; }
+    .hu.a1 { animation-delay: 0.05s; }
+    .hu.a2 { animation-delay: 0.20s; }
+    .hu.a3 { animation-delay: 0.34s; }
+
+    #nav { transition: background 0.3s, border-color 0.3s; }
+    #mob { display: none; }
+    #mob.open { display: block; }
+
+    .bar { width: 40px; height: 3px; background: linear-gradient(90deg, #52A870, #3B7252); border-radius: 99px; }
+
+    /* Photo containers */
+    .founder-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(82,168,112,0.15);
+      background: rgba(11,18,16,0.8);
+    }
+    .founder-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .gcard:hover .founder-photo img { transform: scale(1.03); }
+
+    .team-photo {
+      width: 300px;
+      height: 300px;
+      flex-shrink: 0;
+    }
+    .team-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .founder-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(82,168,112,0.12); border: 1px solid rgba(82,168,112,0.25);
+      border-radius: 99px; padding: 3px 10px;
+      font-size: 0.65rem; font-weight: 700; color: #7EC898;
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    .tag {
+      background: rgba(42,80,56,0.3);
+      border: 1px solid rgba(82,168,112,0.15);
+      border-radius: 99px;
+      padding: 3px 10px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #7EC898;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .member-row {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-bottom: 80px;
+      padding-bottom: 80px;
+      border-bottom: 1px solid rgba(82,168,112,0.1);
+    }
+    .member-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .member-row.reverse { grid-template-columns: 1fr 320px; }
+    .member-row.reverse .member-photo { order: 2; }
+    .member-row.reverse .member-content { order: 1; }
+
+    .member-name { font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .member-role-label { color: #52A870; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; }
+    .member-bio { color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.8; margin-bottom: 24px; }
+    .member-bio strong { color: #fff; font-weight: 700; }
+    .member-closing {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.875rem;
+      line-height: 1.75;
+      font-style: italic;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(82,168,112,0.12);
+    }
+
+    .acc-item { border-bottom: 1px solid rgba(82,168,112,0.15); }
+    .acc-btn {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 0; background: none; border: none;
+      color: rgba(255,255,255,0.8); font-size: 0.9rem; font-weight: 600;
+      cursor: pointer; text-align: left; font-family: 'Inter', sans-serif;
+      transition: color 0.2s;
+    }
+    .acc-btn:hover { color: #7EC898; }
+    .acc-icon { color: #52A870; font-size: 1.2rem; font-weight: 300; flex-shrink: 0; margin-left: 12px; transition: transform 0.2s; }
+    .acc-content { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .acc-content p { color: rgba(255,255,255,0.5); font-size: 0.875rem; line-height: 1.75; padding: 6px 0 18px; }
+
+    @media (max-width: 768px) {
+      .member-row, .member-row.reverse { grid-template-columns: 1fr; gap: 32px; }
+      .member-row.reverse .member-photo, .member-row.reverse .member-content { order: unset; }
+      .team-photo { margin: 0 auto; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav id="nav" class="fixed top-0 inset-x-0 z-50" style="background:transparent; border-bottom: 1px solid transparent;">
+  <div class="max-w-6xl mx-auto px-6 h-24 flex items-center justify-between">
+    <a href="index.html" class="flex items-center">
+      <img src="logo.png.png" alt="Rocky Mountain Co." style="height:90px; width:auto; display:block;">
+    </a>
+    <div class="hidden md:flex items-center gap-7">
+      <a href="index.html"         class="text-g-100 hover:text-white text-sm font-medium transition-colors opacity-70 hover:opacity-100">Home</a>
+      <a href="team.html"          class="text-white text-sm font-medium">Our Team</a>
+      <a href="case-studies.html"  class="text-g-100 hover:text-white text-sm font-medium transition-colors opacity-70 hover:opacity-100">Case Studies</a>
+      <a href="index.html#contact" class="text-g-100 hover:text-white text-sm font-medium transition-colors opacity-70 hover:opacity-100">Contact Us</a>
+      <a href="index.html#contact" class="bg-g-300 hover:bg-g-200 text-g-900 font-bold text-sm px-5 py-2.5 rounded-lg transition-colors ml-1">Book a Call</a>
+    </div>
+    <button onclick="document.getElementById('mob').classList.toggle('open')" class="md:hidden text-white p-1 opacity-80">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <line x1="2" y1="6" x2="20" y2="6"/><line x1="2" y1="12" x2="20" y2="12"/><line x1="2" y1="18" x2="20" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div id="mob" class="md:hidden border-t border-white/5 px-6 py-6" style="background:#060A07;">
+    <div class="flex flex-col gap-5">
+      <a href="index.html"         onclick="document.getElementById('mob').classList.remove('open')" class="text-g-100 text-sm font-medium opacity-70">Home</a>
+      <a href="team.html"          onclick="document.getElementById('mob').classList.remove('open')" class="text-white text-sm font-medium">Our Team</a>
+      <a href="case-studies.html"  onclick="document.getElementById('mob').classList.remove('open')" class="text-g-100 text-sm font-medium opacity-70">Case Studies</a>
+      <a href="index.html#contact" onclick="document.getElementById('mob').classList.remove('open')" class="text-g-100 text-sm font-medium opacity-70">Contact Us</a>
+      <a href="index.html#contact" onclick="document.getElementById('mob').classList.remove('open')" class="bg-g-300 text-g-900 font-bold text-sm px-5 py-3 rounded-lg text-center">Book a Call</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══════════════ HERO ══════════════ -->
+<section style="position:relative; background:#060A07; min-height:48vh; display:flex; align-items:center; overflow:hidden; padding-top:96px;">
+  <div style="position:absolute; bottom:-20%; left:50%; transform:translateX(-50%); width:800px; height:500px; background:radial-gradient(ellipse at center, rgba(58,114,82,0.22) 0%, transparent 65%); pointer-events:none; z-index:0;"></div>
+  <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(82,168,112,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(82,168,112,0.04) 1px,transparent 1px); background-size:60px 60px; z-index:0; pointer-events:none;"></div>
+  <div class="relative z-10 w-full max-w-5xl mx-auto px-6 py-20 text-center">
+    <div class="hu a1 inline-flex items-center gap-2.5 border border-g-500/40 text-g-200 text-xs font-semibold px-5 py-2 rounded-full mb-10 uppercase tracking-widest" style="background:rgba(42,80,56,0.25); backdrop-filter:blur(8px);">
+      <span class="w-1.5 h-1.5 rounded-full bg-g-300 animate-pulse"></span>
+      Edmonton, AB · Full-Service Amazon Growth
+    </div>
+    <h1 class="hu a2 font-black text-white leading-tight mb-6" style="font-size: clamp(2.8rem, 6vw, 4.8rem);">
+      The operators <span class="script" style="font-size:1.05em;">behind your growth.</span>
+    </h1>
+    <p class="hu a3 text-g-100 text-lg leading-relaxed max-w-2xl mx-auto" style="opacity:0.6;">
+      A tight team of Amazon specialists. Every person owns a function — and executes it at a high level.
+    </p>
+  </div>
+</section>
+
+
+<!-- ══════════════ THE TEAM ══════════════ -->
+<section style="background:#060A07; padding: 80px 0 112px;">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-20 sr">
+      <div class="bar mx-auto mb-5"></div>
+      <p class="text-g-300 text-xs font-bold uppercase tracking-widest">The Team</p>
+    </div>
+
+    <div>
+
+      <!-- Mike Sieben -->
+      <div class="member-row sr">
+        <div class="member-photo">
+          <div class="team-photo">
+            <img src="https://images.squarespace-cdn.com/content/v1/65590b9d0694a258955284c8/475dd552-f5d8-4f2e-bfb1-2e698890a2c9/Mike+Sieben.png" alt="Mike Sieben">
+          </div>
+        </div>
+        <div class="member-content">
+          <h2 class="member-name">Mike Sieben</h2>
+          <p class="member-role-label">CEO &amp; Co-Founder</p>
+          <p class="member-bio"><strong>Mike</strong> brings a dynamic blend of expertise in brand management and strategic growth to the e-commerce landscape. His engineering background informs his project management approach — he focuses on innovation, continuous learning, and building lasting partnerships with growing brands.</p>
+          <p class="member-closing">Mike's leadership and vision drive Rocky Mountain Co.'s mission to deliver measurable Amazon results for every brand partner.</p>
+        </div>
+      </div>
+
+      <!-- Niklas Proulx -->
+      <div class="member-row reverse sr">
+        <div class="member-photo">
+          <div class="team-photo">
+            <img src="https://images.squarespace-cdn.com/content/v1/65590b9d0694a258955284c8/e7b46f23-4a65-4bbb-9eb4-08964c9da3c8/Niklas+Proulx.png" alt="Niklas Proulx">
+          </div>
+        </div>
+        <div class="member-content">
+          <h2 class="member-name">Niklas Proulx</h2>
+          <p class="member-role-label">COO &amp; Co-Founder</p>
+          <p class="member-bio"><strong>Nik</strong> oversees supply chain management, logistics, and product procurement at Rocky Mountain Co. Known for his visionary leadership and commitment to operational efficiency, he focuses on supplier relationships and market trend awareness to keep every brand's supply chain running at peak performance.</p>
+          <p class="member-closing">Nik's operational discipline ensures that every brand we work with gets the execution it was promised — on time, every time.</p>
+        </div>
+      </div>
+
+      <!-- Paul Champ -->
+      <div class="member-row sr">
+        <div class="member-photo">
+          <div class="team-photo">
+            <img src="https://images.squarespace-cdn.com/content/v1/65590b9d0694a258955284c8/f98dfcc3-72c5-4cbc-94eb-dff976a6ca73/Paul+Champ.png" alt="Paul Champ">
+          </div>
+        </div>
+        <div class="member-content">
+          <h2 class="member-name">Paul Champ</h2>
+          <p class="member-role-label">Sales &amp; Marketing Lead</p>
+          <p class="member-bio"><strong>Paul</strong> brings over 30 years of FMCG sales and marketing experience, having worked with P&amp;G, Johnson &amp; Johnson, McCain Foods, and TDK. He spearheads innovative sales strategies, excels at building long-term trading relationships, and drives growth by maximizing sales potential for the brands we partner with.</p>
+          <p class="member-closing">Paul's deep industry experience and relationship-first approach make him an invaluable asset to every brand under our management.</p>
+        </div>
+      </div>
+
+      <!-- Sarah Shenher -->
+      <div class="member-row reverse sr">
+        <div class="member-photo">
+          <div class="team-photo">
+            <img src="https://images.squarespace-cdn.com/content/v1/65590b9d0694a258955284c8/0c1de16b-ff44-4ecf-afc6-9684242d51d6/Sarah+Shenher.png" alt="Sarah Shenher">
+          </div>
+        </div>
+        <div class="member-content">
+          <h2 class="member-name">Sarah Shenher</h2>
+          <p class="member-role-label">Brand Account Manager</p>
+          <p class="member-bio"><strong>Sarah</strong> manages Amazon account health, customer relations, logistics, and warehouse operations at Rocky Mountain Co. Her meticulous approach ensures a robust Amazon presence and streamlined supply chain operations through cross-team collaboration.</p>
+          <p class="member-closing">Sarah's attention to detail and operational rigor keep our brand accounts healthy and our supply chains moving without friction.</p>
+        </div>
+      </div>
+
+      <!-- May Grace Arais -->
+      <div class="member-row sr">
+        <div class="member-photo">
+          <div class="team-photo">
+            <img src="https://images.squarespace-cdn.com/content/v1/65590b9d0694a258955284c8/8d7d61f6-a94c-4cb5-a244-12fa2677ecb1/May.png" alt="May Grace Arais">
+          </div>
+        </div>
+        <div class="member-content">
+          <h2 class="member-name">May Grace Arais</h2>
+          <p class="member-role-label">PPC Specialist</p>
+          <p class="member-bio"><strong>May Arais</strong> serves as our dedicated PPC Specialist. She is responsible for building, managing, and optimizing Amazon advertising campaigns that drive visibility, efficiency, and measurable returns for our brand partners.</p>
+          <div class="acc-item">
+            <button class="acc-btn">Amazon Advertising &amp; Campaign Management <span class="acc-icon">+</span></button>
+            <div class="acc-content"><p>May creates and manages pay-per-click (PPC) and related Amazon advertising campaigns, continuously optimizing performance to achieve maximum ROI. She conducts in-depth keyword research and develops targeting strategies in close collaboration with the brand team to ensure campaigns are aligned with overall business goals.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn">Performance Analysis &amp; Reporting <span class="acc-icon">+</span></button>
+            <div class="acc-content"><p>With a strong analytical approach, May closely monitors campaign performance, translating data into actionable insights. She prepares detailed performance reports for management, helping guide strategic decisions and ongoing campaign improvements.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn">Growth &amp; Strategy Alignment <span class="acc-icon">+</span></button>
+            <div class="acc-content"><p>May works cross-functionally with the brand team to ensure PPC strategies support broader business objectives. By staying current with industry trends and Amazon advertising updates, she adapts strategies proactively to maintain competitive advantage.</p></div>
+          </div>
+          <p class="member-closing">May is a detail-oriented, results-driven PPC professional committed to helping brands scale efficiently and succeed within the Amazon marketplace.</p>
+        </div>
+      </div>
+
+      <!-- Vien Macapagal -->
+      <div class="member-row reverse sr">
+        <div class="member-photo">
+          <div class="team-photo">
+            <img src="https://images.squarespace-cdn.com/content/v1/65590b9d0694a258955284c8/aa75d9ab-8cae-4862-a183-5a6031f67cce/Vien+Macapagal.png" alt="Vien Macapagal">
+          </div>
+        </div>
+        <div class="member-content">
+          <h2 class="member-name">Vien Macapagal</h2>
+          <p class="member-role-label">Amazon SEO Specialist</p>
+          <p class="member-bio"><strong>Vien</strong> plays a pivotal role as an Amazon SEO Specialist, driving the optimization and visibility of our products on Amazon. His expertise ensures that our listings consistently rank higher and attract the right audience. Vien's key areas include:</p>
+          <div class="acc-item">
+            <button class="acc-btn">Market and Keyword Research <span class="acc-icon">+</span></button>
+            <div class="acc-content"><p>Conducting in-depth research to identify high-impact search terms and prioritize strategic keywords.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn">Listing Optimization <span class="acc-icon">+</span></button>
+            <div class="acc-content"><p>Enhancing product titles, bullet points, descriptions, and backend keywords to improve search visibility and performance.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn">Data-driven Insights <span class="acc-icon">+</span></button>
+            <div class="acc-content"><p>Leveraging tools like Brand Analytics, Helium 10, and Data Dive to refine SEO strategies and produce actionable insights.</p></div>
+          </div>
+          <p class="member-closing">His deep understanding of Amazon Seller Central, combined with his proficiency in data analysis and tools like Helium 10, positions him as an indispensable member of the Rocky Mountain Co. team.</p>
+        </div>
+      </div>
+
+      <!-- Romelyn Villamor -->
+      <div class="member-row sr">
+        <div class="member-photo">
+          <div class="team-photo">
+            <img src="https://images.squarespace-cdn.com/content/v1/65590b9d0694a258955284c8/e3cd0002-dd07-4b37-a08a-c9230c9b79da/Romelyn+Villamor.png" alt="Romelyn Villamor">
+          </div>
+        </div>
+        <div class="member-content">
+          <h2 class="member-name">Romelyn Villamor</h2>
+          <p class="member-role-label">Amazon SEO &amp; Catalog Specialist</p>
+          <p class="member-bio"><strong>Romelyn</strong> plays a key role at Rocky Mountain Co. as our Amazon SEO and Catalog Specialist. With a deep understanding of Amazon's backend systems and customer search behavior, she ensures that every product listing is fully optimized to rank higher, convert better, and perform stronger.</p>
+          <div class="acc-item">
+            <button class="acc-btn">Listing Optimization &amp; Catalog Management <span class="acc-icon">+</span></button>
+            <div class="acc-content"><p>Romelyn oversees the full catalog lifecycle from product upload to ongoing maintenance. She ensures all listings are accurate, keyword-rich, and aligned with Amazon's best practices. Her expertise in crafting compelling titles, bullet points, and descriptions directly contributes to increased discoverability and conversions.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn">Search Visibility &amp; Content Accuracy <span class="acc-icon">+</span></button>
+            <div class="acc-content"><p>Through thorough keyword research, backend term optimization, and regular audits, Romelyn helps boost organic visibility while maintaining catalog compliance. Her attention to detail ensures a seamless customer experience and accurate product presentation across the marketplace.</p></div>
+          </div>
+          <p class="member-closing">Her reliability and attention to detail bring clarity and performance to our Amazon catalog, supporting brand growth through strategic SEO and content excellence.</p>
+        </div>
+      </div>
+
+      <!-- Ryner Trono -->
+      <div class="member-row reverse sr">
+        <div class="member-photo">
+          <div class="team-photo">
+            <img src="https://images.squarespace-cdn.com/content/v1/65590b9d0694a258955284c8/31d8b468-b5f8-461a-b172-1a4bb76b8af0/Ryner+Trono.png" alt="Ryner Trono">
+          </div>
+        </div>
+        <div class="member-content">
+          <h2 class="member-name">Ryner Trono</h2>
+          <p class="member-role-label">Product Procurement Specialist</p>
+          <p class="member-bio"><strong>Ryner</strong> plays a crucial role in the strategic research and inventory management of our company. His expertise is vital in ensuring that we consistently offer a diverse and high-quality product range on Amazon. Ryner's key areas include:</p>
+          <div class="acc-item">
+            <button class="acc-btn">Strategic Purchasing <span class="acc-icon">+</span></button>
+            <div class="acc-content"><p>Identifying and acquiring products that align with market trends and our company's standards.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn">Inventory Management <span class="acc-icon">+</span></button>
+            <div class="acc-content"><p>Overseeing inventory levels to ensure optimal stock availability and efficient supply chain operations.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn">Supplier Relations <span class="acc-icon">+</span></button>
+            <div class="acc-content"><p>Building and maintaining strong supplier relationships to ensure reliable product sourcing and favourable terms for the brands we manage.</p></div>
+          </div>
+          <p class="member-closing">His keen insight into market dynamics and product demand, coupled with his skill in negotiating and managing supplier relationships, makes Ryner an invaluable asset to the Rocky Mountain Co. team.</p>
+        </div>
+      </div>
+
+      <!-- Nikka Ayayo -->
+      <div class="member-row sr">
+        <div class="member-photo">
+          <div class="team-photo">
+            <img src="https://images.squarespace-cdn.com/content/v1/65590b9d0694a258955284c8/d5e0493a-2b5e-4f60-b349-dbf22d29ae04/Nikka.png" alt="Nikka Ayayo">
+          </div>
+        </div>
+        <div class="member-content">
+          <h2 class="member-name">Nikka Ayayo</h2>
+          <p class="member-role-label">Amazon Account Specialist</p>
+          <p class="member-bio"><strong>Nikka Ayayo</strong> serves as our dedicated Amazon Account Specialist, playing a vital role in supporting the day-to-day operations of our Amazon brand accounts. She ensures accuracy, organization, and smooth coordination across account management, reporting, and internal workflows.</p>
+          <div class="acc-item">
+            <button class="acc-btn">Account Operations &amp; Data Management <span class="acc-icon">+</span></button>
+            <div class="acc-content"><p>Nikka is responsible for gathering and organizing sales, advertising, and inventory data to support reporting and informed decision-making. She also manages Amazon-related email communications, ensuring timely and accurate coordination with internal teams and partners.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn">Shipment Reconciliation &amp; Listing Support <span class="acc-icon">+</span></button>
+            <div class="acc-content"><p>Nikka handles Amazon shipment reconciliation by verifying shipment records and resolving discrepancies to maintain accurate inventory tracking. She assists with listing updates and coordinates with subcontractors to support ongoing account optimizations.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn">Project &amp; Brand Manager Support <span class="acc-icon">+</span></button>
+            <div class="acc-content"><p>Working closely with the Brand Manager, Nikka tracks projects and deadlines, updates task statuses in internal tools such as Notion and Slack, and follows up with team members to ensure deliverables are completed. She also maintains organized documentation and records to keep operations running efficiently.</p></div>
+          </div>
+          <p class="member-closing">Nikka is a detail-oriented and dependable Amazon Account Specialist committed to supporting brand growth and operational excellence across the Amazon marketplace.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════ CTA ══════════════ -->
+<section id="contact" style="background:#0B1210; padding: 112px 0; border-top: 1px solid rgba(82,168,112,0.08);">
+  <div class="max-w-3xl mx-auto px-6 text-center sr">
+    <div class="bar mx-auto mb-8"></div>
+    <h2 class="font-black text-white leading-tight mb-6" style="font-size: clamp(2rem, 5vw, 3.4rem);">
+      Ready to grow on <span class="script" style="font-size:1.1em;">Amazon?</span>
+    </h2>
+    <p class="text-g-100 text-lg leading-relaxed mb-10" style="opacity:0.6; max-width:520px; margin-left:auto; margin-right:auto;">
+      We work with a limited number of brands at a time. If you're doing $5M–$50M and want a real partner on Amazon, let's talk.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="mailto:info@rockymountainco.ca" class="bg-g-300 hover:bg-g-200 text-g-900 font-bold px-8 py-4 rounded-xl text-base transition-colors">Book a Call</a>
+      <a href="case-studies.html" class="border border-g-400/40 hover:border-g-300/60 text-g-100 hover:text-white font-semibold px-8 py-4 rounded-xl text-base transition-colors">See Case Studies</a>
+    </div>
+    <div class="mt-10 text-g-200 text-sm opacity-40">(825) 462-1035 · info@rockymountainco.ca · Edmonton, AB</div>
+  </div>
+</section>
+
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer style="background:#060A07; border-top: 1px solid rgba(82,168,112,0.07); padding: 40px 0;">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <img src="logo.png.png" alt="Rocky Mountain Co." style="height:52px; width:auto; opacity:0.7;">
+    <p class="text-g-200 text-xs opacity-40 text-center">© 2025 Rocky Mountain Co. All rights reserved. · Edmonton, AB</p>
+    <div class="flex gap-6">
+      <a href="index.html"        class="text-g-200 text-xs opacity-40 hover:opacity-70 transition-opacity">Home</a>
+      <a href="team.html"         class="text-g-200 text-xs opacity-70 hover:opacity-100 transition-opacity">Our Team</a>
+      <a href="case-studies.html" class="text-g-200 text-xs opacity-40 hover:opacity-70 transition-opacity">Case Studies</a>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      nav.style.background = 'rgba(20,40,25,0.97)';
+      nav.style.borderBottomColor = 'rgba(82,168,112,0.1)';
+    } else {
+      nav.style.background = 'transparent';
+      nav.style.borderBottomColor = 'transparent';
+    }
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.sr').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.acc-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const content = btn.nextElementSibling;
+      const icon = btn.querySelector('.acc-icon');
+      const isOpen = content.style.maxHeight;
+      document.querySelectorAll('.acc-content').forEach(c => c.style.maxHeight = '');
+      document.querySelectorAll('.acc-icon').forEach(i => i.textContent = '+');
+      if (!isOpen) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        icon.textContent = '−';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
