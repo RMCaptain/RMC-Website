@@ -54,6 +54,19 @@ Currently live on Squarespace — this replaces it.
 
 ---
 
+## Deploy — IMPORTANT
+
+Pushing to GitHub does NOT deploy. The live site ships via Netlify CLI from local disk:
+
+```powershell
+# Deploy ONLY committed state (never a dirty working tree — a manual deploy ships everything on disk):
+git worktree add --detach "$env:TEMP\rmc-site-deploy" master
+netlify deploy --prod --dir "$env:TEMP\rmc-site-deploy" --site e2d42b71-f9e1-4d98-9f82-e55b5777bb1f
+git worktree remove "$env:TEMP\rmc-site-deploy" --force
+```
+
+Netlify login: mike@rockymountainco.ca (already authed on this machine). Site: jovial-alfajores-475c9d → rockymountainco.ca. Commit before deploying; never deploy with uncommitted work in the folder.
+
 ## Build Rules
 
 - Mobile-first, fast-loading
